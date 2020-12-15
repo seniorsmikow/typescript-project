@@ -1,0 +1,31 @@
+.MenuToggle {
+    transition: left .5s ease-in;
+    z-index: 100;
+}
+.MenuToggle.open {
+    left: 350px;
+}
+
+@media (max-width: 400px) {
+    .MenuToggle.open {
+        left: 330px;
+    }
+}
+
+@media (max-width: 375px) {
+    .MenuToggle.open {
+        left: 310px;
+    }
+}
+
+@media (max-width: 350px) {
+    .MenuToggle.open {
+        left: 270px;
+    }
+}
+
+@media (max-width: 320px) {
+    .MenuToggle.open {
+        left: 250px;
+    }
+}

@@ -1,0 +1,51 @@
+.Drawer {
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 80%;
+    max-width: 340px;
+    padding: 20px;
+    box-sizing: border-box;
+    background-color: white;
+    z-index: 100;
+    transform: translateX(0px);
+    transition: transform .3s ease-in;
+}
+.icon {
+    color: black;
+    display: flex;
+    justify-content: right;
+    margin-left: 5px;
+}
+.text {
+    color: black;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+}
+
+.Drawer.close {
+    transform: translateX(-340px);
+}
+
+.Drawer ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.Drawer ul li {
+    margin-bottom: 15px;
+}
+
+.Drawer ul li a {
+    color: red;
+    position: relative;
+}
+
+@media (max-width: 350px) {
+    .Drawer {
+        max-width: 250px;
+    }
+}

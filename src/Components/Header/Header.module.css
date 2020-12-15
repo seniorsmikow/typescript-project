@@ -1,0 +1,77 @@
+.Header {
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #396b9e ;
+    color: #fff;
+    font-size: 50px;
+    font-family: 'Lexend Tera', sans-serif;
+    font-weight: 900;
+    cursor: pointer;
+    position: fixed;
+    width: 100%;
+}
+
+.button {
+    position: fixed;
+    top: 7px;
+    left: 25px;
+    background-color: yellow;
+}
+
+.nav {
+    color: white;
+}
+.hidden {
+    max-width: 0;
+    opacity: 0;
+    transition: 0.5s ease-in;
+}
+
+.Header:hover .hidden {
+    opacity: 1;
+    max-width: 1em;
+    color: #64b5f6;
+}
+
+
+@media (max-width: 800px) {
+    .Header {
+        height: 80px;
+
+    }
+    .Header h1 {
+        font-size: 20px;
+    }
+}
+
+
+
+@media (max-width: 600px) {
+    .Header {
+        height: 80px;
+    }
+    .Header h1 {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 400px) {
+    .Header {
+        height: 80px;
+    }
+    .Header h1 {
+        font-size: 13px;
+    }
+}
+
+@media (max-width: 320px) {
+    .Header {
+        height: 60px;
+    }
+    .Header h1 {
+        font-size: 12px;
+    }
+}
+

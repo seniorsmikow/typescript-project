@@ -1,0 +1,63 @@
+.Navbar {
+    background-color: #cfd8dc;
+    display: flex;
+    flex-direction: column;
+    padding: 60px;
+    width: 30%;
+    height: 100vh;
+    /* font-family: 'Montserrat Alternates', sans-serif; */
+    z-index: 0;
+    width: 100%;
+}
+
+.Main {
+    height: 100%;
+}
+
+.Main ul {
+    font-size: 25px;
+    color: #263238;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.Main li {
+    margin-bottom: 15px;
+    font-weight: 300;
+}
+
+.Main a {
+    color: #263238;
+}
+
+.Ul a:hover {
+    color: #d6a929;
+}
+
+.Ul a:focus {
+    color: #d6a929;
+}
+
+.Ul a:active {
+    color: #d6a929;
+}
+
+.Ul li:hover {
+    -webkit-transform: scaleY(1.1);
+    -ms-transform: scaleY(1.1);
+    transform: scaleY(1.1);
+}
+
+.Ul li:focus {
+    -webkit-transform: scaleY(1.1);
+    -ms-transform: scaleY(1.1);
+    transform: scaleY(1.1);
+}
+
+.Ul li:active {
+    -webkit-transform: scaleY(1.1);
+    -ms-transform: scaleY(1.1);
+    transform: scaleY(1.1);
+}
+
+
