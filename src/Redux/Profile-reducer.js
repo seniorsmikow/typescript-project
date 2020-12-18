@@ -1,13 +1,14 @@
 import {  getProfileApi, getStatus, updateStatus, usersAPI } from '../Api/api';
 
-const GET_PROFILE = 'profile/GET_PROFILE';
-const GET_USER_STATUS = 'profile/GET_USER_STATUS';
-const LOAD_USER_PHOTO = 'profile/LOAD_USER_PHOTO';
+const GET_PROFILE = 'profile/GET_PROFILE'
+const GET_USER_STATUS = 'profile/GET_USER_STATUS'
+const LOAD_USER_PHOTO = 'profile/LOAD_USER_PHOTO'
+
 
 const initialState = {
     profile: null,
-    status: "",
-};
+    status: ""
+}
 
 export const profileReducer = (state = initialState, action) => {
     switch(action.type) {

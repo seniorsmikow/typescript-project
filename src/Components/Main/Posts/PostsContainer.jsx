@@ -1,5 +1,5 @@
 import Posts from './Posts';
-import {addPost} from '../../../Redux/Posts-reducer';
+import {addPost} from '../../../Redux/auth-reducer';
 import {connect} from 'react-redux';
 
 let mapStateToProps = (state) => {
