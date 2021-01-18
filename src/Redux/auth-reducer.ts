@@ -3,21 +3,16 @@ import {stopSubmit} from 'redux-form'
 
 const SET_AUTH_DATA = 'auth/SET_AUTH_DATA'
 
-type InitialStateType = {
-    email: string | null
-    id: number | null
-    login: string | null
-    isAuth: boolean
+let InitialState = {
+    email: null as string | null,
+    id: null as number | null,
+    login: null as string | null,
+    isAuth: false,
 }
 
-let initialState: InitialStateType = {
-    email: null,
-    id: null,
-    login: null,
-    isAuth: false,
-};
+export type InitialStateType = typeof InitialState
 
-const authReducer = (state = initialState, action: any): InitialStateType => {
+const authReducer = (state = InitialState, action: any): InitialStateType => {
     switch(action.type) {
         case SET_AUTH_DATA:
         {

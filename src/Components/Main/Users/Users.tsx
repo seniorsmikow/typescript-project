@@ -1,6 +1,6 @@
 import React from 'react';
 import icon from '../../../img/img_568657.png';
-import classes from './Users.module.css';
+import classes from './Users.module.scss';
 import {NavLink}  from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import Pagination from '@material-ui/lab/Pagination';
@@ -32,12 +32,12 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-const Alert = (props) => {
+const Alert = (props: any) => {
     return <MuiAlert elevation={6} variant="filled" {...props} />;
   }
 
 
-const Users = (props) => {   
+const Users = (props: any) => {   
     
     const styles = useStyles();
 
@@ -47,7 +47,7 @@ const Users = (props) => {
         setOpen(true);
     };
 
-    const handleClose = (event, reason) => {
+    const handleClose = (event: any, reason: any) => {
         if (reason === 'clickaway') {
         return;
         }
@@ -97,7 +97,7 @@ const Users = (props) => {
             
             <br />
             <div className={classes.usersWrapper}>
-                {props.users.map((users, index) => {
+                {props.users.map((users: any, index: any) => {
                         return <div className={classes.usersInfo} key={index}>
                                     <div className={classes.usersIcon}>    
                                         <NavLink to={'/profile/' + users.id} >
@@ -113,7 +113,7 @@ const Users = (props) => {
                                             <div>
                                                 {
                                                     (users.followed ? <Button  variant="contained" style={{backgroundColor: '#f44336'}}
-                                                        disabled={props.usersFollowing.some(id => id === users.id)} onClick={
+                                                        disabled={props.usersFollowing.some((id: any) => id === users.id)} onClick={
                                                         
                                                         () => {
                                                             props.unfollowThunkCreator(users.id);
@@ -122,7 +122,7 @@ const Users = (props) => {
                                                     }> unfollow </Button > : 
 
                                                                         <Button   variant="contained" style={{backgroundColor: '#f44336'}}
-                                                                        disabled={props.usersFollowing.some(id => id === users.id)} onClick={
+                                                                        disabled={props.usersFollowing.some((id: any) => id === users.id)} onClick={
                                                                             () => {
                                                                                 debugger;
                                                                                 props.followThunkCreator(users.id);

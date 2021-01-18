@@ -9,8 +9,10 @@ const CHANGE_CURRENT_PAGE = 'users/CHANGE_CURRENT_PAGE'
 const TOGGLE_IS_FETCHING = 'users/TOGGLE_IS_FETCHING'
 const FOLLOW_IN_PROCESS = 'users/FOLLOW_IN_PROCESS'
 
+// типы из Api лучше вынести в отдельный файл, т.к. позднее они будут использоваться в разных редюсерах
+
 type InitialStateType = {
-    users: Array<any>,
+    users: Array<any>, //users берём из документации Api 
     pageSize: number,
     totalUsersCount: number,
     currentPage: number,
@@ -151,7 +153,7 @@ export const createThunkGetElseUsers = (currentPage: number, pageSize: number) =
             
 }
 
-let followUnfollowType = (userId: number, apiMethod: any, actionCreator: any) => async (dispatch: any) => {
+let followUnfollowType = (userId: number, apiMethod: any, actionCreator: any, isFollow: any) => async (dispatch: any) => {
 
     dispatch(followInProcess(true, userId))
 

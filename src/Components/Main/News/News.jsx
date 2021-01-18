@@ -1,6 +1,7 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
+import Slider from '../../Slider/Slider'
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -33,8 +34,11 @@ const News = () => {
 
     return (
             <Card className={classes.root}>
-                <iframe title="newsPage" width="560" height="315"  src="https://www.youtube.com/embed/xJZa2_aldDs" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                {/* <iframe title="newsPage" width="560" height="315"  src="https://www.youtube.com/embed/xJZa2_aldDs" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> */}
+              <Slider />
+            
             </Card>
+
 
     )
 }

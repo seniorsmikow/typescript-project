@@ -1,31 +1,33 @@
-export const getUsers = (state) => {
-    return state.usersPage.users;
-};
+import { RootState } from './redux-store'
 
-export const getTotalUsersCount = (state) => {
-    return state.usersPage.totalUsersCount;
-};
+export const getUsers = (state: RootState) => {
+    return state.usersPage.users
+}
 
-export const getCurrentPage = (state) => {
-    return state.usersPage.currentPage;
-};
+export const getTotalUsersCount = (state: RootState) => {
+    return state.usersPage.totalUsersCount
+}
 
-export const getPageSize = (state) => {
-    return state.usersPage.pageSize;
-};
+export const getCurrentPage = (state: RootState) => {
+    return state.usersPage.currentPage
+}
 
-export const getPagesLimit = (state) => {
-    return state.usersPage.pagesLimit;
-};
+export const getPageSize = (state: RootState) => {
+    return state.usersPage.pageSize
+}
 
-export const getIsFetching = (state) => {
-    return state.usersPage.isFetching;
-};
+export const getPagesLimit = (state: RootState) => {
+    return state.usersPage.pagesLimit
+}
 
-export const getInProcess = (state) => {
-    return state.usersPage.inProcess;
-};
+export const getIsFetching = (state: RootState) => {
+    return state.usersPage.isFetching
+}
 
-export const getUsersFollowing = (state) => {
-    return state.usersPage.usersFollowing;
-};
+export const getInProcess = (state: RootState) => {
+    return state.usersPage.inProcess
+}
+
+export const getUsersFollowing = (state: RootState) => {
+    return state.usersPage.usersFollowing
+}

@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import classes from './App.module.css';
+import classes from './App.module.scss';
 import HeaderContainer from './Components/Header/HeaderContainer';
 import Main from './Components/Main/Main';
 import {initialApp} from './Redux/app-reducer';
