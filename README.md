@@ -1,4 +1,4 @@
-<h1>Typescript project "Social Network"<h1>
+<h1>Typescript project "Social Network"</h1>
 <hr>
 
 <p>
