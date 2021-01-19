@@ -50,7 +50,7 @@ export const setAuth = (email: string | null, id: number | null, login: string |
     };
 };
 
-export const getMyApiThunk = () => async (dispatch: any) => {
+export const getProfileData = () => async (dispatch: any) => {
 
     let response = await authAPI.me()
     
@@ -65,7 +65,7 @@ export const login = (email: string | null, password: string | null, rememberMe:
     let response = await authAPI.login(email, password, rememberMe)
 
     if(response.data.resultCode === 0) {
-        dispatch(getMyApiThunk())
+        dispatch(getProfileData())
     } else {
         let message = response.data.messages.length > 0 ? response.data.messages[0] : "some error"
         dispatch(stopSubmit("login", {_error: message}))

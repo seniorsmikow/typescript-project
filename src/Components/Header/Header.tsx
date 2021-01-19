@@ -1,5 +1,4 @@
 import React, {useState} from 'react';
-import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
@@ -8,36 +7,28 @@ import {NavLink} from "react-router-dom";
 import PersonIcon from '@material-ui/icons/Person';
 import MenuToggle from '../Menu/Menu';
 import Hidden from '@material-ui/core/Hidden';
+import classes from './Header.module.css';
+//import withHoc from './HeaderHoc';
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    flexGrow: 1,
-    position: 'fixed',
-    width: '100%',
-    backgroundColor: '#25323a',
-    zIndex: 2,
-  },
-  menuButton: {
-    marginRight: theme.spacing(2),
-  },
-  title: {
-    flexGrow: 1,
-  },
-  nav: {
-    color: '#fff',
-    fontSize: 20
-  },
-  login: {
-      display: 'flex',
-      minWidth: 250,
-      justifyContent: 'space-between',
-      alignItems: 'center',
-      fontSize: 20
-  },
-}));
 
-export default function ButtonAppBar(props) {
-  const classes = useStyles();
+type PropsType = {
+  isAuth: boolean
+  login: string | null
+  logout: () => void
+}
+
+// type StylePropsType = {
+//   classes: any
+// }
+
+type HeaderProps = PropsType 
+
+
+const Header: React.FC<HeaderProps> = ({isAuth, login, logout}) => {
+
+  //const { classes  } = props;
+
+  debugger;
 
   let [editMode, setEditMode] = useState(false);
 
@@ -55,13 +46,13 @@ export default function ButtonAppBar(props) {
               React Project
             </Typography>
           </Hidden>
-          { props.isAuth
+          { isAuth
                 ? <div className={classes.login}>
                     <Hidden only="xs">
                       <PersonIcon />
-                      {props.login}
+                      {login}
                     </Hidden>
-                    <Button  variant="contained" color="secondary" onClick={props.logout} >
+                    <Button  variant="contained" color="secondary" onClick={logout} >
                       logout
                     </Button>
                   </div>
@@ -71,3 +62,5 @@ export default function ButtonAppBar(props) {
     </div>
   );
 }
+
+export default Header
