@@ -1,5 +1,8 @@
+import { RootState } from './redux-store'
+import { Dispatch } from 'redux'
 import {getUsers, getElseUsers, usersAPI} from '../Api/api'
 import {updateObjectInArray} from '../utilits/object-helpers'
+import { ThunkAction } from 'redux-thunk'
 
 const FOLLOW = 'users/FOLLOW'
 const UNFOLLOW = 'users/UNFOLLOW'
@@ -33,8 +36,16 @@ let initialState: InitialStateType = {
     usersFollowing: [],
 };
 
+type ActionsTypes = FollowType | 
+                    UnfollowType | 
+                    SetUserType | 
+                    SetTotalUsersCountType | 
+                    ChangeCurrentPageType | 
+                    ToggleIsFetchingType | 
+                    FollowInProcessType
 
-const usersReducer = (state = initialState, action: any): InitialStateType => {
+
+const usersReducer = (state = initialState, action: ActionsTypes): InitialStateType => {
 
     switch(action.type) {
         case FOLLOW: 
@@ -78,49 +89,85 @@ const usersReducer = (state = initialState, action: any): InitialStateType => {
     }  
 }
 
-export const follow = (userId: number) => {
+type FollowType = {
+    type: typeof FOLLOW
+    userId: number
+}
+
+export const follow = (userId: number): FollowType => {
     return {
         type: FOLLOW,
         userId
     }
 }
 
-export const unfollow = (userId: number) => {
+type UnfollowType = {
+    type: typeof UNFOLLOW
+    userId: number
+}
+
+export const unfollow = (userId: number): UnfollowType => {
     return {
         type: UNFOLLOW,
         userId
     }
 }
 
-export const setUsers = (users: any) => {
+type SetUserType = {
+    type: typeof SET_USERS
+    users: any
+}
+
+export const setUsers = (users: any): SetUserType => {
     return {
         type: SET_USERS,
         users
     }
 }
 
-export const setTotalUsersCount = (totalCount: number) => {
+type SetTotalUsersCountType = {
+    type: typeof SET_TOTAL_USERS_COUNT
+    totalCount: number
+}
+
+export const setTotalUsersCount = (totalCount: number): SetTotalUsersCountType => {
     return {
         type: SET_TOTAL_USERS_COUNT,
         totalCount
     }
 }
 
-export const changeCurrentPage = (currentPage: number) => {
+type ChangeCurrentPageType = {
+    type: typeof CHANGE_CURRENT_PAGE
+    currentPage: number
+}
+
+export const changeCurrentPage = (currentPage: number): ChangeCurrentPageType => {
     return {
         type: CHANGE_CURRENT_PAGE,
         currentPage
     }
 }
 
-export const toggleIsFetching = (loading: boolean) => {
+type ToggleIsFetchingType = {
+    type: typeof TOGGLE_IS_FETCHING
+    loading: boolean
+}
+
+export const toggleIsFetching = (loading: boolean): ToggleIsFetchingType => {
     return {
         type: TOGGLE_IS_FETCHING,
         loading
     }
 }
 
-export const followInProcess = (inProcess: boolean, userId: number) => {
+type FollowInProcessType = {
+    type: typeof FOLLOW_IN_PROCESS
+    inProcess: boolean
+    userId: number
+}
+
+export const followInProcess = (inProcess: boolean, userId: number): FollowInProcessType => {
     return {
             type: FOLLOW_IN_PROCESS, 
             inProcess, 
@@ -128,7 +175,7 @@ export const followInProcess = (inProcess: boolean, userId: number) => {
         }
 }
 
-export const createThunkGetUsers = (currentPage: number, pageSize: number) => async (dispatch: any) => {
+export const createThunkGetUsers = (currentPage: number, pageSize: number) => async (dispatch: Dispatch<ActionsTypes>, getState: () => RootState) => {
     
     dispatch(toggleIsFetching(true))
 
@@ -137,10 +184,9 @@ export const createThunkGetUsers = (currentPage: number, pageSize: number) => as
     dispatch(toggleIsFetching(false))
     dispatch(setUsers(response.data.items))
     dispatch(setTotalUsersCount(response.data.totalCount))                         
-            
 }
 
-export const createThunkGetElseUsers = (currentPage: number, pageSize: number) => async (dispatch: any) => {
+export const createThunkGetElseUsers = (currentPage: number, pageSize: number): ThunkAction<Promise<void>, RootState, unknown, ActionsTypes> => async (dispatch, getState) => {
 
     dispatch(toggleIsFetching(true))
 

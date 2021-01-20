@@ -7,9 +7,13 @@ import {withRouter, RouteComponentProps} from 'react-router-dom'
 import {compose} from 'redux'
 import { RootState } from '../../../Redux/redux-store'
 
-//import { ProfileType } from '../../../Types/types'
+import { ProfileType } from '../../../Types/types'
 
-type MapStatePropsType = ReturnType<typeof mapStateToProps>
+type MapStatePropsType = {
+    profile: ProfileType 
+    status: string
+    authId: number | null
+}
 
 type MapDispatchPropsType = {
     thunkCreatorGetProfile: (userId: number) => void
@@ -63,6 +67,7 @@ class ProfileContainer extends React.Component<ProfilePropsType> {
     }
 
     render() {
+
         return  ( 
                     <Profile {...this.props} 
                             profile = {this.props.profile} 
