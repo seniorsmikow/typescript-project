@@ -1,11 +1,11 @@
+import { RootState } from './redux-store'
+import { ThunkAction } from 'redux-thunk'
 import {  getProfileApi, getStatus, updateStatus, usersAPI } from '../Api/api'
-
 import { ProfileType, PhotosType } from '../Types/types'
 
 const GET_PROFILE = 'profile/GET_PROFILE'
 const GET_USER_STATUS = 'profile/GET_USER_STATUS'
 const LOAD_USER_PHOTO = 'profile/LOAD_USER_PHOTO'
-
 
 
 const initialState = {
@@ -16,7 +16,14 @@ const initialState = {
 
 export type InitialStateType = typeof initialState
 
-export const profileReducer = (state = initialState, action: any): InitialStateType => {
+type ActionsTypes = GetProfileType |
+                    GetUserStatusType |
+                    SavePhotoType
+                    
+type ThunkCreationType = ThunkAction<Promise<void>, RootState, unknown, ActionsTypes>
+
+
+export const profileReducer = (state = initialState, action: ActionsTypes): InitialStateType => {
     switch(action.type) {
         case GET_PROFILE:
             return {
@@ -57,22 +64,21 @@ export const getUserStatus = (status: string): GetUserStatusType => ({type: GET_
 export const savePhoto = (photos: PhotosType): SavePhotoType => ({type: LOAD_USER_PHOTO, photos});
 
 
-
-export const thunkCreatorGetProfile = (userId: number) => async (dispatch: any) => {
+export const thunkCreatorGetProfile = (userId: number): ThunkCreationType => async (dispatch) => {
 
     let response = await getProfileApi(userId)
 
     dispatch(getProfile(response.data))
 }
 
-export const getUStatus = (userId: number) => async (dispatch: any) => {
+export const getUStatus = (userId: number): ThunkCreationType => async (dispatch) => {
 
     let response = await getStatus(userId)
         
     dispatch(getUserStatus(response.data));
 }
 
-export const updateUStatus = (status: string) => async (dispatch: any) => {
+export const updateUStatus = (status: string): ThunkCreationType => async (dispatch) => {
 
     let response = await updateStatus(status)
         
@@ -81,7 +87,7 @@ export const updateUStatus = (status: string) => async (dispatch: any) => {
     }
 }
 
-export const loadProfilePhoto = (photoFile: any) => async (dispatch: any) => {
+export const loadProfilePhoto = (photoFile: any): ThunkCreationType => async (dispatch) => {
     let data = await usersAPI.savePhoto(photoFile)
     dispatch(savePhoto(data.data.photos))
 }
