@@ -5,7 +5,7 @@ import Profile from './Profile'
 import {withRedirect} from '../../../Hoc/withRedirect'
 import {withRouter, RouteComponentProps} from 'react-router-dom'
 import {compose} from 'redux'
-import { RootState } from '../../../Redux/redux-store'
+import { AppStateType } from '../../../Redux/redux-store'
 
 import { ProfileType } from '../../../Types/types'
 
@@ -79,7 +79,7 @@ class ProfileContainer extends React.Component<ProfilePropsType> {
     }
 }
 
-let mapStateToProps = (state: RootState) => {
+let mapStateToProps = (state: AppStateType) => {
     return ({
         profile: state.profilePage.profile,
         status: state.profilePage.status,

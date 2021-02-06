@@ -1,4 +1,4 @@
-import { RootState } from './redux-store';
+import { AppStateType } from './redux-store';
 import { ThunkAction } from 'redux-thunk'
 import { login } from './auth-reducer'
 
@@ -12,7 +12,7 @@ type InitialStateType = typeof initialState
 
 type ActionsTypes = AppLoad
 
-type ThunkCreationType = ThunkAction<Promise<void>, RootState, unknown, ActionsTypes>
+type ThunkCreationType = ThunkAction<Promise<void>, AppStateType, unknown, ActionsTypes>
 
 const appReducer = (state = initialState, action: ActionsTypes) : InitialStateType => {
     switch(action.type) {
@@ -37,7 +37,7 @@ export const appLoad = (): AppLoad => ({type: START_APP})
 
 export const initialApp = (): ThunkCreationType => async dispatch => {
         
-    let promise = await login(null, null, null)
+    let promise = await login(null, null, false)
 
     Promise.all([promise]).then( () => {
         dispatch(appLoad());

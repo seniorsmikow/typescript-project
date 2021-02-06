@@ -3,7 +3,7 @@ import Header from './Header'
 import {getProfileData, logout} from '../../Redux/auth-reducer'
 import {connect, ConnectedProps} from 'react-redux'
 
-import { RootState } from '../../Redux/redux-store'
+import { AppStateType } from '../../Redux/redux-store'
 type PropsType = PropsFromRedux
 
 
@@ -19,7 +19,7 @@ class HeaderContainer extends React.Component<PropsType> {
 
 }
 
-let mapStateToProps = (state: RootState) => {
+let mapStateToProps = (state: AppStateType) => {
     return {
         isAuth: state.auth.isAuth,
         login: state.auth.login

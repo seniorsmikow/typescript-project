@@ -1,44 +1,23 @@
 import React from 'react'
 import { connect, ConnectedProps } from 'react-redux'
-import {createThunkGetUsers, createThunkGetElseUsers, setTotalUsersCount,  followThunkCreator, unfollowThunkCreator} from '../../../Redux/users-reducer'
+import {getUsersData, usersPaginationHelper, followUser, unfollowUser} from '../../../Redux/users-reducer'
 import Users from './Users'
 import Loader from '../../Loader/Loader'
 //import {compose} from 'redux'
 import {getUsers, getTotalUsersCount, getCurrentPage, getPageSize, getPagesLimit, getIsFetching, getInProcess, getUsersFollowing} from '../../../Redux/users-selectors'
-import { RootState } from '../../../Redux/redux-store'
-
-
-// type StateProps = {
-//     users: any
-//     totalUsersCount: number
-//     currentPage: number
-//     pageSize: number
-//     pagesLimit: number
-//     isFetching: boolean
-//     inProcess: boolean
-//     usersFollowing: () => void
-// }
-
-// type DispatchProps = {
-//     setTotalUsersCount: () => void 
-//     createThunkGetUsers: (currentPage: number, pageSize: number) => void
-//     createThunkGetElseUsers: (currentPage: number, pageSize: number) => void
-//     followThunkCreator: () => void
-//     unfollowThunkCreator: () => void
-// }
+import { AppStateType } from '../../../Redux/redux-store'
 
 type AllProps =  PropsFromRedux
-
 
 class UsersContainer extends React.Component<AllProps> {
 
     componentDidMount() {
-        this.props.createThunkGetUsers(this.props.currentPage, this.props.pageSize)
+        this.props.getUsersData(this.props.currentPage, this.props.pageSize)
     }
 
     onPageChanged = (currentPage: number) => {
         
-        this.props.createThunkGetElseUsers(currentPage, this.props.pageSize)
+        this.props.usersPaginationHelper(currentPage, this.props.pageSize)
 
     }
 
@@ -54,8 +33,8 @@ class UsersContainer extends React.Component<AllProps> {
                     isFetching={this.props.isFetching}
                     inProcess={this.props.inProcess}
                     usersFollowing={this.props.usersFollowing}
-                    followThunkCreator={this.props.followThunkCreator}
-                    unfollowThunkCreator={this.props.unfollowThunkCreator}
+                    followThunkCreator={this.props.followUser}
+                    unfollowThunkCreator={this.props.unfollowUser}
                     />
             </div>
         )
@@ -64,7 +43,7 @@ class UsersContainer extends React.Component<AllProps> {
     }
 }
 
-const mapStateToProps = (state: RootState) => {
+const mapStateToProps = (state: AppStateType) => {
 
     return {
         users: getUsers(state),
@@ -78,7 +57,7 @@ const mapStateToProps = (state: RootState) => {
     }
 }
 
-const mapDispatchToProps = {setTotalUsersCount, createThunkGetUsers, createThunkGetElseUsers, followThunkCreator, unfollowThunkCreator}
+const mapDispatchToProps = {getUsersData, usersPaginationHelper, followUser, unfollowUser}
 
 const connector = connect(mapStateToProps, mapDispatchToProps)
 

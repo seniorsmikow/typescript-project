@@ -1,4 +1,4 @@
-import { RootState } from './redux-store'
+import { AppStateType } from './redux-store'
 import { ThunkAction } from 'redux-thunk'
 import {  getProfileApi, getStatus, updateStatus, usersAPI } from '../Api/api'
 import { ProfileType, PhotosType } from '../Types/types'
@@ -20,7 +20,7 @@ type ActionsTypes = GetProfileType |
                     GetUserStatusType |
                     SavePhotoType
                     
-type ThunkCreationType = ThunkAction<Promise<void>, RootState, unknown, ActionsTypes>
+type ThunkCreationType = ThunkAction<Promise<void>, AppStateType, unknown, ActionsTypes>
 
 
 export const profileReducer = (state = initialState, action: ActionsTypes): InitialStateType => {
