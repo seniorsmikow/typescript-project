@@ -1,8 +1,7 @@
-import { AppStateType, InferActionsTypes, BaseThunkType } from './redux-store'
+import { InferActionsTypes, BaseThunkType } from './redux-store'
 import { Dispatch } from 'redux'
 import {getUsers, getElseUsers, usersAPI} from '../Api/api'
 import {updateObjectInArray} from '../utilits/object-helpers'
-import { ThunkAction } from 'redux-thunk'
 import { APIResponseType } from '../Api/api'
 import { UserType } from '../Types/types'
 
@@ -86,9 +85,7 @@ export const actions = {
 export const getUsersData = (currentPage: number, pageSize: number): ThunkType => {
 
     return async(dispatch, getState) => {
-    
         dispatch(actions.isUsersDataLoading(true))
-    
         let response = await getUsers(currentPage, pageSize)
         
         dispatch(actions.isUsersDataLoading(false))
@@ -100,9 +97,7 @@ export const getUsersData = (currentPage: number, pageSize: number): ThunkType =
 export const usersPaginationHelper = (currentPage: number, pageSize: number): ThunkType => {
 
     return async(dispatch, getState) => {
-
     dispatch(actions.isUsersDataLoading(true))
-
     let response = await getElseUsers(currentPage, pageSize)
     
     dispatch(actions.isUsersDataLoading(false))
@@ -119,13 +114,11 @@ let followUnfollowType = async (dispatch: Dispatch<ActionsTypes>,
                                 ) => {
 
     dispatch(actions.handleUserFollow(true, userId))
-
     let response = await apiMethod(userId)
 
     if(response.resultCode === 0) {
         dispatch(actionCreator(userId))
     }
-
     dispatch(actions.handleUserFollow(false, userId))
 }
 

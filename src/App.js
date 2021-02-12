@@ -13,7 +13,7 @@ import store from './Redux/redux-store';
 
 class AppContainer extends Component { 
 
-  componentWillMount() {
+  UNSAFE_componentWillMount() {
     this.props.initialApp();
   }
 

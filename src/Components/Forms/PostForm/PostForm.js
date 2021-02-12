@@ -2,7 +2,7 @@ import React from 'react';
 import classes from './PostForm.module.css';
 import { Field } from 'redux-form';
 import { requiredField, maxLength } from '../../../utilits/validators/validators';
-import Textarea from '../../Textarea/Textarea';
+import Textarea from '../../Main/Textarea/Textarea';
 
 const maxLengthValue10 = maxLength(5);
 

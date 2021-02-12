@@ -2,7 +2,7 @@ import React from 'react';
 import classes from './MessageForm.module.css';
 import { Field } from 'redux-form';
 import { requiredField, maxLength } from '../../../utilits/validators/validators';
-import Input from '../../Textarea/Input';
+import Input from '../../Main/Textarea/Input';
 
 const maxLengthValue100 = maxLength(5);
 

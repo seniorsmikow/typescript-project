@@ -73,8 +73,8 @@ export const login = (email: string | null, password: string | null, rememberMe:
     if(response.data.resultCode === ResultCode.Error) {
         dispatch(getProfileData())
     } else {
-        let message = response.data.messages.length > 0 ? response.data.messages[0] : "some error"
-        //dispatch(stopSubmit("login", {_error: message}))
+        // let message = response.data.messages.length > 0 ? response.data.messages[0] : "some error"
+        // dispatch(stopSubmit("login", {_error: message}))
     }
 };
 

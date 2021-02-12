@@ -2,10 +2,11 @@ import React from 'react'
 import { connect } from 'react-redux'
 import {thunkCreatorGetProfile, getUStatus, updateUStatus, loadProfilePhoto} from '../../../Redux/profile-reducer'
 import Profile from './Profile'
-import {withRedirect} from '../../../Hoc/withRedirect'
+//import {withRedirect} from '../../../Hoc/withRedirect'
 import {withRouter, RouteComponentProps} from 'react-router-dom'
 import {compose} from 'redux'
 import { AppStateType } from '../../../Redux/redux-store'
+import styles from './ProfileContainer.module.scss'
 
 import { ProfileType } from '../../../Types/types'
 
@@ -30,11 +31,6 @@ type ProfilePropsType = MapStatePropsType & MapDispatchPropsType & RouteComponen
 
 
 class ProfileContainer extends React.Component<ProfilePropsType> {
-
-    // constructor(props: ProfilePropsType) {
-    //     super(props);
-    // }
-
 
     refreshProfile() {
 
@@ -67,14 +63,15 @@ class ProfileContainer extends React.Component<ProfilePropsType> {
     }
 
     render() {
-
         return  ( 
+                <div className={styles.root}>
                     <Profile {...this.props} 
                             profile = {this.props.profile} 
                             deactivate = {this.props.updateUStatus} 
                             isOwner = {!this.props.match.params.userId}
                             loadProfilePhoto = {this.props.loadProfilePhoto}
                     />
+                </div>
         )
     }
 }
@@ -90,5 +87,4 @@ let mapStateToProps = (state: AppStateType) => {
 export default compose<React.ComponentType>(
     connect(mapStateToProps, {thunkCreatorGetProfile, getUStatus, updateUStatus, loadProfilePhoto}),
     withRouter,
-    withRedirect
 )(ProfileContainer)

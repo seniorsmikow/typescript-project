@@ -67,21 +67,18 @@ export const savePhoto = (photos: PhotosType): SavePhotoType => ({type: LOAD_USE
 export const thunkCreatorGetProfile = (userId: number): ThunkCreationType => async (dispatch) => {
 
     let response = await getProfileApi(userId)
-
     dispatch(getProfile(response.data))
 }
 
 export const getUStatus = (userId: number): ThunkCreationType => async (dispatch) => {
 
     let response = await getStatus(userId)
-        
     dispatch(getUserStatus(response.data));
 }
 
 export const updateUStatus = (status: string): ThunkCreationType => async (dispatch) => {
 
     let response = await updateStatus(status)
-        
     if(response.data.resultCode === 0) {
         dispatch(getUserStatus(status))
     }
